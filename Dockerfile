@@ -27,15 +27,14 @@ EXPOSE 9090
 VOLUME /var/lib/docker
 VOLUME /data
 
-# Install ruby and node.js build repositories
+# Install sbt and node.js build repositories
+RUN echo "deb https://dl.bintray.com/sbt/debian /" | sudo tee -a /etc/apt/sources.list.d/sbt.list
 RUN apt-add-repository ppa:chris-lea/node.js
-RUN apt-add-repository ppa:brightbox/ruby-ng
+RUN sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 642AC823
 RUN apt-get update
 
-# Install node / ruby environment
-RUN apt-get install -y nodejs git ruby2.1 ruby2.1-dev ruby ruby-switch build-essential python-dateutil
-RUN ruby-switch --set ruby2.1
+# Install node / sbt environment
+RUN apt-get install -y nodejs git sbt
 RUN npm install -g bower grunt-cli
-RUN gem install rake bundler compass --no-ri --no-rdoc
 
 ADD service /etc/service
