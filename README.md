@@ -12,5 +12,5 @@ Optionally you can specify your ownaddress using the `TEAMCITY_OWN_ADDRESS` vari
 Linking example
 --------
 ```
-docker run -d --name=teamcity-agent-1 --link teamcity:teamcity --privileged -e TEAMCITY_SERVER=http://teamcity:8111 sjoerdmulder/teamcity-agent:latest
+docker run -d --name=sbt-agent --link teamcity:teamcity --privileged -e TEAMCITY_SERVER=http://teamcity:8111 bvolders/teamcity-agent--docker:latest
 ```
