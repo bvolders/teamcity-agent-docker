@@ -29,12 +29,12 @@ VOLUME /data
 
 # Install sbt and node.js build repositories
 RUN echo "deb https://dl.bintray.com/sbt/debian /" | sudo tee -a /etc/apt/sources.list.d/sbt.list
-RUN apt-add-repository ppa:chris-lea/node.js
+RUN add-apt-repository ppa:ondrej/php5-5.6
 RUN sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 642AC823
 RUN apt-get update
 
-# Install node / sbt environment
-RUN apt-get install -y nodejs git sbt
-RUN npm install -g bower grunt-cli
+# Install php environment
+RUN apt-get install -y curl git sbt python-software-properties php5
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=bin
 
 ADD service /etc/service
